@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
-docker run -i -a stdin -a stdout -a stderr antlr_calculator  
+script_path=$( cd "$(dirname "${BASH_SOURCE[0]}")" ; pwd -P )
+cd "$script_path"
+cd ../src
+ 
+java MainVisitor
