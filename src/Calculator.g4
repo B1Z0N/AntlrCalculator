@@ -1,16 +1,19 @@
 grammar Calculator;
 
+init: expr EOF ;
+
 expr
-    : NUMBER                            # Number
-    | left=expr op=(MUL|DIV) right=expr # MulDiv
-    | left=expr op=(ADD|SUB) right=expr # AddSub
-    | '(' inner=expr ')'                # Parens
+    : '(' inner=expr ')'                   # Parens
+    | op=(PLUS|MINUS) expr                 # Unary
+    | left=expr op=(MUL|DIV) right=expr    # MulDiv
+    | left=expr op=(PLUS|MINUS) right=expr # AddSub
+    | value=NUM                            # Number
     ;
 
-NUMBER: [+-]?[0-9]+('.'[0-9]+)?([eE][+-]?[0-9]+)? ;
+NUM: [0-9]+ ('.' [0-9]+)? ([eE] [+-]? [0-9]+)? ;
 
 MUL: '*' ;
 DIV: '/' ;
-ADD: '+' ;
-SUB: '-' ;
+PLUS: '+' ;
+MINUS: '-' ;
 WS : [ \t\r\n]+ -> skip ;

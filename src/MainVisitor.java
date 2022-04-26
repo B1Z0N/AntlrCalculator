@@ -2,8 +2,7 @@ import org.antlr.v4.runtime.*;
 import org.antlr.v4.runtime.tree.*;
 
 import java.io.FileInputStream;
-import java.io.InputStream;
-import java.math.BigDecimal;
+import java.io.InputStream; import java.math.BigDecimal;
 
 public class MainVisitor {
   private static class Visitor extends CalculatorBaseVisitor<BigDecimal> {
@@ -22,10 +21,20 @@ public class MainVisitor {
     public BigDecimal visitAddSub(CalculatorParser.AddSubContext ctx) { 
       var left = visit(ctx.left);
       var right = visit(ctx.right);
-      if (ctx.op.getType() == CalculatorParser.ADD) {
+      if (ctx.op.getType() == CalculatorParser.PLUS) {
           return left.add(right);
       } else {
           return left.subtract(right);
+      }
+    }
+
+    @Override
+    public BigDecimal visitUnary(CalculatorParser.UnaryContext ctx) { 
+      var value = ctx.expr();       
+      if (ctx.op.getType() == CalculatorParser.MINUS) {
+        return visit(value).negate();
+      } else {
+        return visit(value);
       }
     }
 
@@ -36,7 +45,7 @@ public class MainVisitor {
 
 	  @Override 
     public BigDecimal visitNumber(CalculatorParser.NumberContext ctx) { 
-      return new BigDecimal(ctx.NUMBER().getText());
+      return new BigDecimal(ctx.NUM().getText());
     }
   }
 
