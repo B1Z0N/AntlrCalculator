@@ -9,8 +9,8 @@ public class MainVisitor {
   private static class Visitor extends CalculatorBaseVisitor<BigDecimal> {
 	  @Override 
     public BigDecimal visitMulDiv(CalculatorParser.MulDivContext ctx) { 
-      var left = visit(ctx.expr(0));
-      var right = visit(ctx.expr(1));
+      var left = visit(ctx.left);
+      var right = visit(ctx.right);
       if (ctx.op.getType() == CalculatorParser.MUL) {
           return left.multiply(right);
       } else {
@@ -20,8 +20,8 @@ public class MainVisitor {
 
 	  @Override
     public BigDecimal visitAddSub(CalculatorParser.AddSubContext ctx) { 
-      var left = visit(ctx.expr(0));
-      var right = visit(ctx.expr(1));
+      var left = visit(ctx.left);
+      var right = visit(ctx.right);
       if (ctx.op.getType() == CalculatorParser.ADD) {
           return left.add(right);
       } else {
@@ -35,8 +35,8 @@ public class MainVisitor {
     }
 
 	  @Override 
-    public BigDecimal visitFloat(CalculatorParser.FloatContext ctx) { 
-      return new BigDecimal(ctx.FLOAT().getText());
+    public BigDecimal visitNumber(CalculatorParser.NumberContext ctx) { 
+      return new BigDecimal(ctx.NUMBER().getText());
     }
   }
 

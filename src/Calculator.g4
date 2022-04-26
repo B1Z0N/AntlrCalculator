@@ -1,15 +1,13 @@
 grammar Calculator;
 
-expr: expr op=('*'|'/') expr # MulDiv
-    | expr op=('+'|'-') expr # AddSub
-    | FLOAT                  # Float
-    | '('expr')'             # Parens
+expr
+    : NUMBER                            # Number
+    | left=expr op=(MUL|DIV) right=expr # MulDiv
+    | left=expr op=(ADD|SUB) right=expr # AddSub
+    | '(' inner=expr ')'                # Parens
     ;
 
-FLOAT: [+-]?[0-9]+'.'[0-9]+ 
-     | [+-]?[0-9]+('.'[0-9]+)?'e'[+-]?[0-9]+
-     | [+-]?[0-9]+ 
-     ;
+NUMBER: [+-]?[0-9]+('.'[0-9]+)?([eE][+-]?[0-9]+)? ;
 
 MUL: '*' ;
 DIV: '/' ;
