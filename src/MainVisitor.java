@@ -18,7 +18,7 @@ public class MainVisitor {
       }
     }
 
-	  @Override 
+	  @Override
     public BigDecimal visitAddSub(CalculatorParser.AddSubContext ctx) { 
       var left = visit(ctx.expr(0));
       var right = visit(ctx.expr(1));
