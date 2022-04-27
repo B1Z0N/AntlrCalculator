@@ -1,19 +1,16 @@
 package org.antlrcalculator.app;
 
-import java.io.ByteArrayInputStream;
 import java.io.Console;
 import java.math.BigDecimal;
 import java.util.stream.Stream;
 import java.util.function.Function;
+import java.io.ByteArrayInputStream;
 
 import org.junit.jupiter.api.Test;
-
-import org.junit.jupiter.params.provider.Arguments;
-
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
-
 import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 
 public class MainVisitorTest 
 {
@@ -29,7 +26,7 @@ public class MainVisitorTest
     return null;
   }
   
-  // one and only tests
+  // one and only test
   
   @ParameterizedTest
   @MethodSource({"numbers", "unaryOps", "parentheses", "addSub", "mulDiv", "misc"})
@@ -40,7 +37,7 @@ public class MainVisitorTest
     assertTrue(expectedResult.compareTo(result) == 0, msg);
   }
 
-  // and lots of data
+  // and lots of cases
 
   private static Stream<Arguments> numbers() {
     return Stream.of(
