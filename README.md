@@ -29,7 +29,7 @@ To build you need `maven`, to run you need `java`. I use `openjdk18`.
 4. To run tests:
 
 ```
-./scripts/docker/test.sh  # wait for some time
+./scripts/test.sh
 ```
 
 
@@ -50,13 +50,13 @@ To build you need `maven`, to run you need `java`. I use `openjdk18`.
 3. To run as interactive REPL:
 
 ```
-./scripts/run.sh  # wait for some time
+./scripts/docker/run.sh  # wait for some time
 ```
 
 4. To run tests:
 
 ```
-./scripts/test.sh
+./scripts/docker/test.sh
 ```
 
 ## TODO
