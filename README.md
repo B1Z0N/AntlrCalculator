@@ -14,17 +14,24 @@ To build you need `maven`, to run you need `java`. I use `openjdk18`.
 ./scripts/build.sh
 ```
 
-1. To run as CLI:
+2. To run as CLI:
 
 ```
-./scripts/run.sh (1.0 + -2)*-2.5e+1
+./scripts/run.sh (1.0 + -2)*-2.5e+1  # wait for some time
 ```
 
-2. To run as interactive REPL:
+3. To run as interactive REPL:
 
 ```
-./scripts/run.sh
+./scripts/run.sh  # wait for some time
 ```
+
+4. To run tests:
+
+```
+./scripts/docker/test.sh  # wait for some time
+```
+
 
 ### Docker
 
@@ -34,18 +41,25 @@ To build you need `maven`, to run you need `java`. I use `openjdk18`.
 ./scripts/docker/build.sh
 ```
 
-1. To run as CLI:
+2. To run as CLI:
 
 ```
-./scripts/docker/run.sh (1.0 + -2)*-2.5e+1
+./scripts/docker/run.sh (1.0 + -2)*-2.5e+1  # wait for some time
 ```
 
-2. To run as interactive REPL:
+3. To run as interactive REPL:
 
 ```
-./scripts/run.sh
+./scripts/run.sh  # wait for some time
+```
+
+4. To run tests:
+
+```
+./scripts/test.sh
 ```
 
 ## TODO
 
 1. Cache some `maven` dependencies during `docker` build so that it doesn't take lifetime to run.
+2. Mount src to docker so that you could edit it on the fly.

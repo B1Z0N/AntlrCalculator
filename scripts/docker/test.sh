@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-docker run -it antlr_calculator test $*
+docker run -it antlr_calculator test "$@"
