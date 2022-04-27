@@ -1,12 +1,15 @@
-import org.antlr.v4.runtime.*;
-import org.antlr.v4.runtime.tree.*;
+package org.antlrcalculator.app;
 
-import java.io.FileInputStream;
-import java.io.InputStream; import java.math.BigDecimal;
+import org.antlr.v4.runtime.CharStreams;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlrcalculator.app.core.parser.*;
+
+import java.io.InputStream;
+import java.math.BigDecimal;
 
 public class MainVisitor {
   private static class Visitor extends CalculatorBaseVisitor<BigDecimal> {
-	  @Override 
+    @Override 
     public BigDecimal visitMulDiv(CalculatorParser.MulDivContext ctx) { 
       var left = visit(ctx.left);
       var right = visit(ctx.right);
@@ -17,7 +20,7 @@ public class MainVisitor {
       }
     }
 
-	  @Override
+    @Override
     public BigDecimal visitAddSub(CalculatorParser.AddSubContext ctx) { 
       var left = visit(ctx.left);
       var right = visit(ctx.right);
@@ -49,14 +52,18 @@ public class MainVisitor {
     }
   }
 
-  public static void main(String[] args) throws Exception {
-    var is = CharStreams.fromStream(System.in);
+  public static BigDecimal run(InputStream input) {
+    var is = CharStreams.fromStream(input);
     var lexer = new CalculatorLexer(is);
     var tokens = new CommonTokenStream(lexer);
     var parser = new CalculatorParser(tokens);
     
     var tree = parser.expr();
-    var eval = new Visitor(); 
+    var eval = new Visitor();
     System.out.println(eval.visit(tree));
+  }
+
+  public static void main(String[] args) throws Exception {
+    System.out.println(run(System.in));
   }
 }
