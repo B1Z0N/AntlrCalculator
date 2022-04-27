@@ -17,7 +17,7 @@ To build you need `maven`, to run you need `java`. I use `openjdk18`.
 2. To run as CLI:
 
 ```
-./scripts/run.sh (1.0 + -2)*-2.5e+1  # wait for some time
+./scripts/run.sh "(1.0 + -2)*-2.5e+1"  # wait for some time
 ```
 
 3. To run as interactive REPL:
@@ -44,7 +44,7 @@ To build you need `maven`, to run you need `java`. I use `openjdk18`.
 2. To run as CLI:
 
 ```
-./scripts/docker/run.sh (1.0 + -2)*-2.5e+1  # wait for some time
+./scripts/docker/run.sh "(1.0 + -2)*-2.5e+1"  # wait for some time
 ```
 
 3. To run as interactive REPL:
