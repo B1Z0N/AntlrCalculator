@@ -2,9 +2,10 @@ package org.antlrcalculator.app;
 
 import org.antlr.v4.runtime.CharStreams;
 import org.antlr.v4.runtime.CommonTokenStream;
-import org.antlrcalculator.app.core.parser.*;
+import org.antlrcalculator.app.*;
 
 import java.io.InputStream;
+import java.io.ByteArrayInputStream;
 import java.math.BigDecimal;
 
 public class MainVisitor {
@@ -52,18 +53,30 @@ public class MainVisitor {
     }
   }
 
-  public static BigDecimal run(InputStream input) {
-    var is = CharStreams.fromStream(input);
+  public static BigDecimal run(String input) throws Exception {
+    var is = CharStreams.fromString(input);
     var lexer = new CalculatorLexer(is);
     var tokens = new CommonTokenStream(lexer);
     var parser = new CalculatorParser(tokens);
     
     var tree = parser.expr();
     var eval = new Visitor();
-    System.out.println(eval.visit(tree));
+    return eval.visit(tree);
   }
 
   public static void main(String[] args) throws Exception {
-    System.out.println(run(System.in));
+    if (args.length != 0) {
+      System.out.println(run(String.join("", args)));
+      return;
+    }
+
+    while (true) {
+      var input = System.console().readLine("calc> ");
+      if (input == null) {
+        break;
+      }
+
+      System.out.println(run(input));
+    }
   }
 }
