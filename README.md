@@ -5,6 +5,7 @@ Simple CLI calculator app for me to get used to [ANTLR parser generator](https:/
 # Up and running
 
 To build you need `maven`, to run you need `java`. I use `openjdk18`.
+> NB: For some of the scripts below you may need to run it with sudo, even though [I discourage it](https://elementaryos.stackexchange.com/questions/448/why-is-running-commands-with-sudo-dangerous).
 
 ### Locally
 
