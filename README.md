@@ -2,6 +2,19 @@
 
 Simple CLI calculator app for me to get used to [ANTLR parser generator](https://www.antlr.org/).
 
+## Operations
+
+The calculator supports the following operations:
+
+*   Addition (`+`)
+*   Subtraction (`-`)
+*   Multiplication (`*`)
+*   Division (`/`)
+*   Modulo (`%`)
+*   Unary plus (`+`)
+*   Unary minus (`-`)
+*   Parentheses for grouping (`()`)
+
 # Up and running
 
 > NB: For some of the scripts below you may need to run it with sudo, even though [I discourage it](https://elementaryos.stackexchange.com/questions/448/why-is-running-commands-with-sudo-dangerous).
