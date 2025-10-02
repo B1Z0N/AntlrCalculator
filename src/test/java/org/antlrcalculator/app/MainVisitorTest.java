@@ -29,7 +29,7 @@ public class MainVisitorTest
   // one and only test
   
   @ParameterizedTest
-  @MethodSource({"numbers", "unaryOps", "parentheses", "addSub", "mulDiv", "misc"})
+  @MethodSource({"numbers", "unaryOps", "parentheses", "addSub", "mulDiv", "mod", "misc"})
   public void shouldBeEqual(String expression, BigDecimal expectedResult) {
     var result = run(expression);
     var msg = String.join("", "(!) '", expression, "' should be equal to '", 
@@ -126,6 +126,16 @@ public class MainVisitorTest
     return Stream.of(
       Arguments.of("1-(5 - -5)", BigDecimal.valueOf(-9)),
       Arguments.of("1--(5 - -5)", BigDecimal.valueOf(11))
+    );
+  }
+
+  private static Stream<Arguments> mod() {
+    return Stream.of(
+      Arguments.of("5 % 2", BigDecimal.valueOf(1)),
+      Arguments.of("10 % 3", BigDecimal.valueOf(1)),
+      Arguments.of("10 % 3.5", BigDecimal.valueOf(3.0)),
+      Arguments.of("10.5 % 3.5", BigDecimal.valueOf(0.0)),
+      Arguments.of("10.5 % 3", BigDecimal.valueOf(1.5))
     );
   }
 }

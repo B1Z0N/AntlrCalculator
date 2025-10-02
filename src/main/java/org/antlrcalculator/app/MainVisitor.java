@@ -16,8 +16,10 @@ public class MainVisitor {
       var right = visit(ctx.right);
       if (ctx.op.getType() == CalculatorParser.MUL) {
           return left.multiply(right);
-      } else {
+      } else if (ctx.op.getType() == CalculatorParser.DIV) {
           return left.divide(right);
+      } else {
+          return left.remainder(right);
       }
     }
 
