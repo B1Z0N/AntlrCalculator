@@ -11,13 +11,15 @@ import java.math.BigDecimal;
 public class MainVisitor {
   private static class Visitor extends CalculatorBaseVisitor<BigDecimal> {
     @Override 
-    public BigDecimal visitMulDiv(CalculatorParser.MulDivContext ctx) { 
+    public BigDecimal visitMulDivMod(CalculatorParser.MulDivModContext ctx) {
       var left = visit(ctx.left);
       var right = visit(ctx.right);
       if (ctx.op.getType() == CalculatorParser.MUL) {
           return left.multiply(right);
-      } else {
+      } else if (ctx.op.getType() == CalculatorParser.DIV) {
           return left.divide(right);
+      } else {
+          return left.remainder(right);
       }
     }
 
